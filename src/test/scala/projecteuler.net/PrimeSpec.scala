@@ -39,7 +39,7 @@ class PrimeSpec extends FlatSpec {
     }
   }
 
-  "The factors of 600851475143" should "be 3 277 1153 6271" in {
+  "3. The factors of 600851475143" should "be 3 277 1153 6271" in {
     expect(List(3, 277, 1153, 6271)) {
       Prime.factors(BigInt.apply("6008514753"))
     }
