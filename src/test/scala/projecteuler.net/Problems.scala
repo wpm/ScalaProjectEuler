@@ -20,4 +20,12 @@ class Problems extends FlatSpec {
       NumberTheory.factors(BigInt.apply("6008514753")).max
     }
   }
+
+  "7. The 10,001st prime number" should "be 104743" in {
+    expect(104743) {
+      val primes = new Primes()
+      primes.drop(10000)
+      primes.next()
+    }
+  }
 }
