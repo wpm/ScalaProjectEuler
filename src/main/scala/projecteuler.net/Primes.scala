@@ -1,4 +1,4 @@
-package projecteuler.net.eratosthenes
+package projecteuler.net
 
 import collection.mutable
 
