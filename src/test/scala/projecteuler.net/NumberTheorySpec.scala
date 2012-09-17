@@ -26,4 +26,10 @@ class NumberTheorySpec extends FlatSpec {
       NumberTheory.factors(63525)
     }
   }
+
+  "The factors of 600851475143" should "be 71 839 1471 6857" in {
+    expect(List(71, 839, 1471, 6857)) {
+      NumberTheory.factors(BigInt.apply("600851475143"))
+    }
+  }
 }

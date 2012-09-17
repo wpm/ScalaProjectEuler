@@ -16,8 +16,8 @@ class Problems extends FlatSpec {
   }
 
   "3. The largest prime factor of 600851475143" should "be 6271" in {
-    expect(6271) {
-      NumberTheory.factors(BigInt.apply("6008514753")).max
+    expect(6857) {
+      NumberTheory.factors(BigInt.apply("600851475143")).max
     }
   }
 
