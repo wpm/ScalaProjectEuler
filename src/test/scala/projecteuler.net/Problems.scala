@@ -5,13 +5,13 @@ import org.scalatest.FlatSpec
 class Problems extends FlatSpec {
   "1. The sum of all multiples of 3 and 4 less than 1000" should "be 234168" in {
     expect(234168) {
-      1 to 1000 filter (n=> n%3 == 0 || n %5 ==0) sum
+      1 to 1000 filter (n => n % 3 == 0 || n % 5 == 0) sum
     }
   }
 
   "2. The sum of the even Fibonacci numbers below four million" should "be 4613732" in {
     expect(4613732) {
-      Fibonacci.fibonacci takeWhile(_ <= 4000000) filter (_ % 2 == 0) sum
+      Fibonacci.fibonacci takeWhile (_ <= 4000000) filter (_ % 2 == 0) sum
     }
   }
 
@@ -26,6 +26,13 @@ class Problems extends FlatSpec {
       val primes = new Primes()
       primes.drop(10000)
       primes.next()
+    }
+  }
+
+  "10. The sum of primes below two million" should "be 1159902918" in {
+    expect(1159902918) {
+      val primes = new Primes()
+      primes.takeWhile(_ < 2000000).sum
     }
   }
 }
