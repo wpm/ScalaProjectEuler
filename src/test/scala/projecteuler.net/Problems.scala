@@ -11,7 +11,7 @@ class Problems extends FlatSpec {
 
   "2. The sum of the even Fibonacci numbers below four million" should "be 4613732" in {
     expect(4613732) {
-      Fibonacci.fibonacci takeWhile (_ <= 4000000) filter (_ % 2 == 0) sum
+      Fibonacci.fibonacciSeries takeWhile (_ <= 4000000) filter (_ % 2 == 0) sum
     }
   }
 
