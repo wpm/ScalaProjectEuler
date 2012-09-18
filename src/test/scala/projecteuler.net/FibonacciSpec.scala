@@ -8,4 +8,10 @@ class FibonacciSpec extends FlatSpec {
       Fibonacci.fibonacci take 9
     }
   }
+
+  it should "be 0,1,1,2,3,5,8,13,21 with the Dijkstra algorithm" in {
+    expect(List(0, 1, 1, 2, 3, 5, 8, 13, 21)) {
+      (0 to 8).map(Fibonacci.dijkstraFibonacci(_))
+    }
+  }
 }
