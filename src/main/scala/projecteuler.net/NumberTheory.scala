@@ -4,6 +4,7 @@ package projecteuler.net
  * Various number theory functions.
  */
 object NumberTheory {
+  // TODO Make factors tail recursive.
   /**
    * Prime factorization of a number
    *
