@@ -1,7 +1,8 @@
 package projecteuler.net
 
-import collection.mutable
 import annotation.tailrec
+import collection.mutable
+import math.{round, sqrt}
 
 /**
  * Iterator over the prime numbers.
@@ -74,7 +75,7 @@ object Primes {
     @tailrec
     def factorsRecurse(fs: List[BigInt], n: BigInt): List[BigInt] = {
       val primes = new Primes
-      primes takeWhile (_.toDouble <= math.sqrt(n.toDouble)) find (n % _ == 0) match {
+      primes takeWhile (_ <= round(sqrt(n.toDouble))) find (n % _ == 0) match {
         case Some(factor) => factorsRecurse(factor :: fs, n / factor)
         case None => n :: fs
       }
