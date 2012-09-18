@@ -44,6 +44,16 @@ class Problems extends FlatSpec {
     }
   }
 
+  // TODO 500 divisors takes a long time.
+  "12. The first triangle number to have more than 5 divisors" should "be 28" in {
+    expect(28) {
+      def triangle(n: Int) = n * (n + 1) / 2
+      def divisors(n: Int) = (1 to n).count(n % _ == 0)
+      def ints(n: Int): Stream[Int] = n #:: ints(n + 1)
+      ints(0).map(triangle(_)).find(divisors(_) > 5).get
+    }
+  }
+
   "25. The first Fibonacci number with 1000 digits" should "be number 4782 in the series" in {
     expect(4782) {
       // Use the log of Binet's expression to know to start around 4000.
