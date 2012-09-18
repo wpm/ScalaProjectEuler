@@ -14,4 +14,11 @@ class FibonacciSpec extends FlatSpec {
       (0 to 8).map(Fibonacci.fibonacci(_))
     }
   }
+
+  "The first Fibonacci number with 3 digits (144)" should "be number 12 in the series" in {
+    expect(12) {
+      def ints(n: Int): Stream[Int] = n #:: ints(n + 1)
+      ints(0).map(Fibonacci.fibonacci(_).toString().length).indexOf(3)
+    }
+  }
 }

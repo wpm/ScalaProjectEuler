@@ -35,4 +35,13 @@ class Problems extends FlatSpec {
       primes.takeWhile(_ < 2000000).sum
     }
   }
+
+  "25. The first Fibonacci number with 1000 digits" should "be number 4782 in the series" in {
+    expect(4782) {
+      // Use the log of Binet's expression to know to start around 4000.
+      val start = 4000
+      def ints(n: Int): Stream[Int] = n #:: ints(n + 1)
+      ints(start).map(Fibonacci.fibonacci(_).toString().length).indexOf(1000) + start
+    }
+  }
 }
