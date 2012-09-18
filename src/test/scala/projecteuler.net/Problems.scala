@@ -21,6 +21,14 @@ class Problems extends FlatSpec {
     }
   }
 
+  "6. Difference of sqaured sum and sum of sqaures for 1...100" should "be 25164150" in {
+    expect(25164150) {
+      def square(x: Int) = x * x
+      def diff(n: Int) = square((1 to n).sum) - (1 to n).map(square(_)).sum
+      diff(100)
+    }
+  }
+
   "7. The 10,001st prime number" should "be 104743" in {
     expect(104743) {
       val primes = new Primes()
