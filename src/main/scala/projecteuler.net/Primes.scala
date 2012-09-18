@@ -1,6 +1,7 @@
 package projecteuler.net
 
 import collection.mutable
+import annotation.tailrec
 
 /**
  * Iterator over the prime numbers.
@@ -63,7 +64,6 @@ class Primes extends Iterator[Int] {
 }
 
 object Primes {
-  // TODO Make factors tail recursive.
   /**
    * Prime factorization of a number
    *
@@ -71,10 +71,14 @@ object Primes {
    * @return prime factors of n
    */
   def factors(n: BigInt): List[BigInt] = {
-    val primes = new Primes
-    primes takeWhile (_.toDouble <= math.sqrt(n.toDouble)) find (n % _ == 0) match {
-      case Some(factor) => factor :: factors(n / factor)
-      case None => n :: Nil
+    @tailrec
+    def factorsRecurse(fs: List[BigInt], n: BigInt): List[BigInt] = {
+      val primes = new Primes
+      primes takeWhile (_.toDouble <= math.sqrt(n.toDouble)) find (n % _ == 0) match {
+        case Some(factor) => factorsRecurse(factor :: fs, n / factor)
+        case None => n :: fs
+      }
     }
+    factorsRecurse(Nil, n).reverse
   }
 }
