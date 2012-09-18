@@ -25,6 +25,7 @@ class Primes extends Iterator[Int] {
     override def toString() = (0 to 3).map(composite + _ * prime).map(_.toString).reduceLeft(_ + "," + _) + "..."
   }
 
+  // TODO Implement sieve of Eratosthenes with priority queue instead of multimap.
   /**
    * Sieve of Eratosthenes as described in "The Genuine Sieve of Eratosthenes" by Melissa E. O'Neill.
    *
