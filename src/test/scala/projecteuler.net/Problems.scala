@@ -54,6 +54,13 @@ class Problems extends FlatSpec {
     }
   }
 
+  "14. The longest Hailstone chain beneath a million" should "start on 837799 and be 525 numbers long" in {
+    expect(((525,837799))) {
+      val c = new Collatz()
+      c.maxChain(1000000)
+    }
+  }
+
   "25. The first Fibonacci number with 1000 digits" should "be number 4782 in the series" in {
     expect(4782) {
       // Use the log of Binet's expression to know to start around 4000.

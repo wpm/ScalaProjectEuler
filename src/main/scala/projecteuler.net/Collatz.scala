@@ -31,5 +31,5 @@ class Collatz {
     l + d
   }
 
-  override def toString = cachedLength.mkString("(", ", ", ")")
+  def maxChain(maxStart: Int) = (1 to maxStart).map(n => ((chainLength(n), n))).max
 }
