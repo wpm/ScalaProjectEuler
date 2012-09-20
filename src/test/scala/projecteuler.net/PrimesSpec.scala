@@ -22,6 +22,19 @@ class PrimesSpec extends FlatSpec {
     }
   }
 
+  it should "match another algorithm's output for the first 1000 terms" in {
+    val terms = 1000
+    // The other algorithm is asymptotically slower but is fast enough for 1000 terms.
+    def integers(n: Int): Stream[Int] = n #:: integers(n + 1)
+    def otherPrimes(nums: Stream[Int]): Stream[Int] =
+      nums.head #:: otherPrimes((nums tail) filter (x => x % nums.head != 0))
+    val other = otherPrimes(integers(2)).take(terms).toList
+    expect(other) {
+      val f = fixture
+      for (_ <- 1.to(terms)) yield f.primes.next()
+    }
+  }
+
   "The factors of 2" should "be 2" in {
     expect(List(2)) {
       Primes.factors(2)
