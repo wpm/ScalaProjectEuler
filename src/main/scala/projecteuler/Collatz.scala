@@ -1,4 +1,4 @@
-package projecteuler.net
+package projecteuler
 
 import collection.mutable
 
