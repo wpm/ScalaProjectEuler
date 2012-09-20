@@ -35,7 +35,7 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
     }
 
     override def toString() = prime + ":" +
-      (0 to 2).map(composite + _ * prime).map(_.toString()).reduceLeft(_ + "," + _) + "..."
+      (0 to 2).map(composite + _ * prime).mkString(",") + "..."
   }
 
   /**
