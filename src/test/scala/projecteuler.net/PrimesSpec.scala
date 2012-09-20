@@ -22,6 +22,14 @@ class PrimesSpec extends FlatSpec {
     }
   }
 
+  it should "have 99991 as element 9592" in {
+    expect(99991) {
+      val f = fixture
+      f.primes.drop(9591)
+      f.primes.next()
+    }
+  }
+
   it should "match another algorithm's output for the first 1000 terms" in {
     val terms = 1000
     // The other algorithm is asymptotically slower but is fast enough for 1000 terms.
