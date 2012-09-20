@@ -17,7 +17,7 @@ class Problems extends FlatSpec {
 
   "3. The largest prime factor of 600851475143" should "be 6271" in {
     expect(6857) {
-      Primes.factors(BigInt.apply("600851475143")).max
+      SieveOfEratosthenes.factors(BigInt.apply("600851475143")).max
     }
   }
 
@@ -31,15 +31,15 @@ class Problems extends FlatSpec {
 
   "7. The 10,001st prime number" should "be 104743" in {
     expect(104743) {
-      val primes = new Primes()
+      val primes = SieveOfEratosthenes()
       primes.drop(10000)
       primes.next()
     }
   }
 
-  "10. The sum of primes below two million" should "be 1159902918" in {
-    expect(1159902918) {
-      val primes = new Primes()
+  "10. The sum of primes below two million" should "be 1179908154" in {
+    expect(1179908154) {
+      val primes = SieveOfEratosthenes()
       primes.takeWhile(_ < 2000000).sum
     }
   }
@@ -55,7 +55,7 @@ class Problems extends FlatSpec {
   }
 
   "14. The longest Hailstone chain beneath a million" should "start on 837799 and be 525 numbers long" in {
-    expect(((525,837799))) {
+    expect(((525, 837799))) {
       val c = new Collatz()
       c.maxChain(1000000)
     }

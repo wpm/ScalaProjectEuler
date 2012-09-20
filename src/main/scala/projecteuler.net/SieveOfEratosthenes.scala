@@ -1,6 +1,8 @@
 package projecteuler.net
 
 import collection.mutable
+import annotation.tailrec
+import math.{sqrt, round}
 
 /**
  * Iterator over prime numbers that uses the sieve of Eratosthenes
@@ -24,7 +26,7 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
   /**
    * Iterators over the multiples of all the primes that have been discovered so far.
    */
-  val composites = new mutable.PriorityQueue[CompositeIterator]()(CompositeIteratorOrdering)
+  private val composites = new mutable.PriorityQueue[CompositeIterator]()(CompositeIteratorOrdering)
 
   private var n: Int = 2
   markPrime(2)
@@ -46,14 +48,14 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
 
   override def toString() = composites.toList.sortWith(_.head < _.head).mkString(", ")
 
-  def isComposite(n: Int) = composites.head.head == n
+  private def isComposite(n: Int) = composites.head.head == n
 
   /**
    * Mark the next number as a prime
    *
    * @param prime number to mark as prime
    */
-  def markPrime(prime: Int) {
+  private def markPrime(prime: Int) {
     composites.enqueue(new CompositeIterator(prime))
   }
 
@@ -65,7 +67,7 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
    *
    * @param composite number to mark as as composite
    */
-  def markComposite(composite: Int) {
+  private def markComposite(composite: Int) {
     var multipleIterators: List[CompositeIterator] = Nil
     while (composites.head.head == composite) {
       multipleIterators = composites.dequeue() +: multipleIterators
@@ -77,4 +79,22 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
 
 object SieveOfEratosthenes {
   def apply() = new SieveOfEratosthenes
+
+  /**
+   * Prime factorization of a number
+   *
+   * @param n number to factorize
+   * @return prime factors of n
+   */
+  def factors(n: BigInt): List[BigInt] = {
+    @tailrec
+    def factorsRecurse(fs: List[BigInt], n: BigInt): List[BigInt] = {
+      val primes = SieveOfEratosthenes()
+      primes takeWhile (_ <= round(sqrt(n.toDouble))) find (n % _ == 0) match {
+        case Some(factor) => factorsRecurse(factor :: fs, n / factor)
+        case None => n :: fs
+      }
+    }
+    factorsRecurse(Nil, n).reverse
+  }
 }
