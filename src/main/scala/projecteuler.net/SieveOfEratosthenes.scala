@@ -18,10 +18,9 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
 
   /**
    * Iterator over the multiples of a prime number, starting at the square of that number
-   * @param basePrime the base prime
+   * @param prime the base prime
    */
-  class CompositeIterator(basePrime: BigInt) extends BufferedIterator[BigInt] {
-    private val prime = basePrime
+  class CompositeIterator(prime: BigInt) extends BufferedIterator[BigInt] {
     var composite = prime * prime
 
     def hasNext = true
