@@ -2,6 +2,9 @@ package projecteuler.net
 
 import collection.mutable
 
+/**
+ * Algorithms to investigate the Collatz hypothesis of Hailstone chains.
+ */
 class Collatz {
   /**
    * Hailstone chain
@@ -31,5 +34,13 @@ class Collatz {
     l + d
   }
 
+  /**
+   * The longest chain in a range of starting values from one to a specified maximum
+   *
+   * All the chains share the same length cache.
+   *
+   * @param maxStart the largest starting value
+   * @return (chain length, starting value) for the longest chain
+   */
   def maxChain(maxStart: Int) = (1 to maxStart).map(n => ((chainLength(n), n))).max
 }

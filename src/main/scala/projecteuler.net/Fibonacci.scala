@@ -2,18 +2,22 @@ package projecteuler.net
 
 import collection.mutable
 
+/**
+ * Algorithms to calculate the Fibonacci series
+ *
+ * This contains an algorithm to produce the entire series as a stream and an implementation of Dijkstra's recursive
+ * method for finding a single term of the series.
+ */
 object Fibonacci {
-  // Fibonacci.fibonacciSeries(1000000) runs out of memory
-
   /**
-   * The entire Fibonacci series
+   * The Fibonacci series
    */
   val fibonacciSeries: Stream[BigInt] = 0 #:: 1 #:: fibonacciSeries.zip(fibonacciSeries.tail).map(x => x._1 + x._2)
 
   /**
    * The nth Fibonacci number
    *
-   * This uses Dijkstra's recursive method, which is more efficient for large n.
+   * This uses Dijkstra's recursive algorithm.
    *
    * @param n series index
    * @return the nth Fibonacci number
