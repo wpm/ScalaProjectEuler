@@ -24,7 +24,7 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
   /**
    * Iterators over the multiples of all the primes that have been discovered so far.
    */
-  private val composites = new mutable.PriorityQueue[CompositeIterator]()(CompositeIteratorOrdering)
+  val composites = new mutable.PriorityQueue[CompositeIterator]()(CompositeIteratorOrdering)
 
   private var n: Int = 2
   markPrime(2)
@@ -46,19 +46,32 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
 
   override def toString() = composites.toList.sortWith(_.head < _.head).mkString(", ")
 
-  private def isComposite(n: Int) = composites.head.head == n
+  def isComposite(n: Int) = composites.head.head == n
 
-  private def markPrime(prime: Int) {
+  /**
+   * Mark the next number as a prime
+   *
+   * @param prime number to mark as prime
+   */
+  def markPrime(prime: Int) {
     composites.enqueue(new CompositeIterator(prime))
   }
 
-  private def markComposite(composite: Int) {
-    // Dequeue all the prime multiple iterators that have this composite as their next element.
-    val its = composites.takeWhile(_.head == composite).toList
-    for (_ <- 1 to its.length) composites.dequeue()
-    // Advance the removed iterators and then add them back in.
-    its.foreach(_.next())
-    composites ++= its
+  /**
+   * Mark the next number as a composite
+   *
+   * Dequeue all the prime multiple iterators that have the specified component as their next element. Advance these
+   * iterators to their next multiples and then add then back into the queue.
+   *
+   * @param composite number to mark as as composite
+   */
+  def markComposite(composite: Int) {
+    var multipleIterators: List[CompositeIterator] = Nil
+    while (composites.head.head == composite) {
+      multipleIterators = composites.dequeue() +: multipleIterators
+    }
+    multipleIterators.foreach(_.next())
+    composites ++= multipleIterators
   }
 }
 

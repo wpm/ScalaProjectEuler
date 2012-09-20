@@ -4,7 +4,7 @@ package projecteuler.net
  * Iterator over the multiples of a prime number, starting at the square of that number
  * @param basePrime the base prime
  */
-class CompositeIterator(basePrime: Int) extends BufferedIterator[Int] {
+class CompositeIterator(basePrime: BigInt) extends BufferedIterator[BigInt] {
   private val prime = basePrime
   var composite = prime * prime
 
@@ -19,7 +19,7 @@ class CompositeIterator(basePrime: Int) extends BufferedIterator[Int] {
   }
 
   override def toString() = prime + ":" +
-    (0 to 2).map(composite + _ * prime).map(_.toString).reduceLeft(_ + "," + _) + "..."
+    (0 to 2).map(composite + _ * prime).map(_.toString()).reduceLeft(_ + "," + _) + "..."
 }
 
 object CompositeIterator {

@@ -4,7 +4,7 @@ import org.scalatest.FlatSpec
 
 class PrimesSpec extends FlatSpec {
   def fixture = new {
-    val primes = new Primes
+    val primes = SieveOfEratosthenes()
   }
 
   "The prime number sequence" should "start with 2,3,5,7,11" in {
