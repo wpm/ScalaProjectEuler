@@ -33,8 +33,7 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
       n
     }
 
-    override def toString() = prime + ":" +
-      (0 to 2).map(composite + _ * prime).mkString(",") + "..."
+    override def toString() = prime + ":" + (0 to 2).map(composite + _ * prime).mkString(",") + "..."
   }
 
   /**
@@ -69,6 +68,14 @@ class SieveOfEratosthenes extends BufferedIterator[Int] {
 
   override def toString() = composites.toList.sortWith(_.head < _.head).mkString(", ")
 
+  /**
+   * Is the next number composite?
+   *
+   * The next composite appears at the head of the composites iterator queue.
+   *
+   * @param n next number
+   * @return true if n is composite
+   */
   private def isComposite(n: Int) = composites.head.head == n
 
   /**
