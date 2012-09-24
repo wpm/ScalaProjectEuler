@@ -88,4 +88,10 @@ class Problems extends FlatSpec {
       ints(start).map(Fibonacci.fibonacci(_).toString().length).indexOf(1000) + start
     }
   }
+
+  "53. The number of C(n,k)>1000000 with n <= 100" should "be 2200" in {
+    expect(2200) {
+      (for (n <- 1 to 100; k <- 0 to n) yield MiscMath.c(n, k)).filter(_ > 1000000).length
+    }
+  }
 }
