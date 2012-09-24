@@ -12,7 +12,10 @@ object Fibonacci {
   /**
    * The Fibonacci series
    */
-  val fibonacciSeries: Stream[BigInt] = 0 #:: 1 #:: fibonacciSeries.zip(fibonacciSeries.tail).map(x => x._1 + x._2)
+  lazy val fibonacciSeries: Stream[BigInt] = {
+    def fibonacciGenerator(x: BigInt, y: BigInt): Stream[BigInt] = x #:: fibonacciGenerator(y, x + y)
+    fibonacciGenerator(0, 1)
+  }
 
   /**
    * The nth Fibonacci number
