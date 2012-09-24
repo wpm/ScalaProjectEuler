@@ -71,6 +71,15 @@ class Problems extends FlatSpec {
     }
   }
 
+  "20. The sum of the digits in 100!" should "be 648" in {
+    expect(648) {
+      implicit def pimp(n: Int) = new {
+        def !(): BigInt = ((1 to n) :\ BigInt(1))(_ * _)
+      }
+      (100!).toString().map(_.toString.toInt).sum
+    }
+  }
+
   "25. The first Fibonacci number with 1000 digits" should "be number 4782 in the series" in {
     expect(4782) {
       // Use the log of Binet's expression to know to start around 4000.
