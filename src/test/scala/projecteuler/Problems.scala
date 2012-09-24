@@ -73,10 +73,7 @@ class Problems extends FlatSpec {
 
   "20. The sum of the digits in 100!" should "be 648" in {
     expect(648) {
-      implicit def pimp(n: Int) = new {
-        def !(): BigInt = ((1 to n) :\ BigInt(1))(_ * _)
-      }
-      (100!).toString().map(_.toString.toInt).sum
+      MiscMath.factorial(100).toString().map(_.toString.toInt).sum
     }
   }
 

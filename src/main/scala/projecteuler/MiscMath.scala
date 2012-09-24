@@ -1,6 +1,8 @@
 package projecteuler
 
 object MiscMath {
+  def factorial(n: Int): BigInt = ((1 to n) :\ BigInt(1))(_ * _)
+
   /**
    * Binomial coefficient
    *
