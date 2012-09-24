@@ -37,6 +37,16 @@ class Problems extends FlatSpec {
     }
   }
 
+  "9. a*b*c where a+b+c=1000 and a,b,c is a Pythagorean triple" should "be 31875000 (a=200,b=375,c=425)" in {
+    expect(31875000) {
+      (for (a <- 1 to 334;
+            b <- a + 1 to 500;
+            c <- b + 1 to 500
+            if ((a + b + c == 1000) && (a * a + b * b == c * c)))
+      yield ((a * b * c))).head
+    }
+  }
+
   "10. The sum of primes below two million" should "be 1179908154" in {
     expect(1179908154) {
       val primes = SieveOfEratosthenes()
