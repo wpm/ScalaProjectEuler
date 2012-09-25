@@ -87,8 +87,8 @@ class Problems extends FlatSpec {
   }
 
   "53. The number of C(n,k)>1000000 with n <= 100" should "be 2200" in {
-    expect(2200) {
-      (for (n <- 1 to 100; k <- 0 to n) yield MiscMath.c(n, k)).filter(_ > 1000000).length
+    expect(4075) {
+      (for (n <- 1 to 100; k <- 0 to n) yield MiscMath.choose(n, k)).filter(_ > 1000000).length
     }
   }
 }
