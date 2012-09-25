@@ -16,6 +16,18 @@ class MiscMathSpec extends FlatSpec {
     }
   }
 
+  "choose(2,3)" should "be 0" in {
+    expect(0) {
+      choose(2, 3)
+    }
+  }
+
+  "choose(3,3)" should "be 1" in {
+    expect(1) {
+      choose(3, 3)
+    }
+  }
+
   "The big integer choose(100,7) = 16007560800" should "be the same calculated recursively or with factorials" in {
     expect(factorial(100) / (factorial(7) * factorial(100 - 7))) {
       choose(100, 7)
